@@ -1,5 +1,12 @@
 # JBDL-19
 
+Assignments:
+1. Basic core Java - https://docs.google.com/document/d/1YMig3AVLglOgQVWFmt93ZtdvndiRRfowexAmPpUGeP0/edit
+2. DS Algo in Java - https://docs.google.com/document/d/1gUQSdwxdw6f4DJRO0W92tziih86tTt06fWl7L-V852g/edit
+3. Streams and Lambdas - https://docs.google.com/document/d/1AAlORAmRz-m_aaviZ_k4DgbbbLNzlrn3mV8ayaxgKOg/edit
+4. Multi-Threading - https://docs.google.com/document/d/1kgmo9IYiG0K4lALkDqwwRY0wnCmsCIL61DxRxBiaVBE/edit
+
+
 Java
 
 1. Download - https://www.oracle.com/in/java/technologies/javase-downloads.html
