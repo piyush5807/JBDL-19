@@ -1,0 +1,14 @@
+myapp:
+  price:
+    currency: INR
+  quantity: 30
+
+server:
+  port: 9000
+  server-header: test
+
+
+
+#my_app.price.currency=INR
+#my_app.quantity=30
+#server.port=9000
