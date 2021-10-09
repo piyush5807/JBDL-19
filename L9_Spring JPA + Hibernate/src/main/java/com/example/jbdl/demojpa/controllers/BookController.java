@@ -29,8 +29,30 @@ public class BookController {
     }
 
     @PutMapping("/book")
-    public void updateBookById(@RequestParam("id") int id){
-        bookService.updateBook(id);
+    public void updateBookCostById(@RequestParam("id") int id, @RequestParam("cost") int updatedCost){
+        bookService.updateBook(id, updatedCost);
+    }
+
+    @GetMapping("/book_by_author")
+    public List<Book> getBooksByAuthorName(@RequestParam("author") String author){
+        // select * from book where author_name = author
+        return bookService.findBooksByAuthorName(author);
+    }
+
+    @GetMapping("/book_by_cost")
+    public List<Book> getBooksByCost(@RequestParam("cost") int cost){
+        // return all the books where cost of the book is < the given cost
+        // select * from book where cost < cost
+
+        return bookService.findBooksLessThanCost(cost);
+    }
+
+    @GetMapping("/book_by_name")
+    public List<Book> getBooksByName(@RequestParam("name") String name){
+        // return all the books where cost of the book is < the given cost
+        // select * from book where cost < cost
+
+        return bookService.findBooksByName(name);
     }
 
     @DeleteMapping("/book/{bId}")

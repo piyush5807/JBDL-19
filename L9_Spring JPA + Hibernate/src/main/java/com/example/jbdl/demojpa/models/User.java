@@ -1,7 +1,6 @@
 package com.example.jbdl.demojpa.models;
 
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

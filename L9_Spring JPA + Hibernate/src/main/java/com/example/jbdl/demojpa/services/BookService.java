@@ -25,8 +25,21 @@ public class BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
-    public void updateBook(int id){
+    public void updateBook(int id, int updatedCost){
         // write while covering custom queries
+        bookRepository.updateBook(id, updatedCost);
+    }
+
+    public List<Book> findBooksByAuthorName(String author){
+        return bookRepository.findBookByAuthorName(author);
+    }
+
+    public List<Book> findBooksLessThanCost(int cost){
+        return bookRepository.findBooksByCost(cost);
+    }
+
+    public List<Book> findBooksByName(String name){
+        return bookRepository.findByBookName(name);
     }
 
     public void deleteBook(long id){
