@@ -1,14 +1,22 @@
 package com.example.jbdl.libraryapp.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Book {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +33,17 @@ public class Book {
     @CreationTimestamp
     private Date bookAddedOn;
 
-    private Author author;
+    @JoinColumn
+    @ManyToOne
+    @JsonIgnoreProperties(value = "books")
+    private Author author; // Foreign key
 
-    private Student student;
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnoreProperties("books")
+    private Student myStudent;
 
+    @OneToMany(mappedBy = "book")
+    @JsonIgnoreProperties("book")
     private List<Transaction> transactions;
 }

@@ -1,13 +1,19 @@
 package com.example.jbdl.libraryapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Author {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Author implements Serializable {  // 1 : N
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +21,13 @@ public class Author {
 
     private String name;
 
-    private List<Book> books;
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @OneToMany(mappedBy = "author") // One (Author) -> Many (books)
+    @JsonIgnoreProperties("author")
+    private List<Book> books; // Not a column
+
     private String country;
     private int age;
 }

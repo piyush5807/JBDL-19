@@ -1,13 +1,21 @@
 package com.example.jbdl.libraryapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Student {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,20 +25,24 @@ public class Student {
     private int age;
     private String country;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String contact;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String rollNo;
 
     @CreationTimestamp
     private Date registeredOn;
 
+    @OneToMany(mappedBy = "myStudent")
+    @JsonIgnoreProperties("myStudent")
     private List<Book> books;
 
+    @OneToMany(mappedBy = "student")
+    @JsonIgnoreProperties("student")
     private List<Transaction> transactions;
 
     private int totalFine;
