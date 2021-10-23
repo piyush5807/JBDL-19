@@ -1,5 +1,6 @@
 package com.example.jbdl19.demoredis;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -15,8 +16,10 @@ public class Config {
     public LettuceConnectionFactory getRedisFactory(){
 
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(
-                "localhost", 6379
+                "redis-12476.c89.us-east-1-3.ec2.cloud.redislabs.com", 12476
         );
+
+        redisStandaloneConfiguration.setPassword("");
 
         LettuceConnectionFactory lettuceConnectionFactory =
                 new LettuceConnectionFactory(redisStandaloneConfiguration);
@@ -30,10 +33,15 @@ public class Config {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
         redisTemplate.setHashValueSerializer(new JdkSerializationRedisSerializer());
-//        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setConnectionFactory(getRedisFactory());
 
         return redisTemplate;
 
+    }
+
+    @Bean
+    public ObjectMapper getMapper(){
+        return new ObjectMapper();
     }
 }
